@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -18,20 +18,15 @@ def promotion():
     return "<br/>".join(["Человечество вырастает из детства.", "Человечеству мала одна планета.",
                          "Мы сделаем обитаемыми безжизненные пока планеты.", "И начнем с Марса!", "Присоединяйся!"])
 
+
 @app.route('/image_mars')
 def image_mars():
-    return """
-    <html>
-    <head>
-    <title>Привет, марс!</title>
-    </head>
-    <h1>Жди нас, Марс!</h1>
-    <image src="https://asteropa.ru/wp-content/uploads/2019/09/-e1569874296830.jpg" style="width: 500px; height: 500px;">
-    <p>Вот она какая, красная планета</p>
-    </html>
-    
-    """
-    
+    return render_template("mars_image.html")
+
+
+@app.route("/promotion_image")
+def promotion_image():
+    return render_template("promotion.html")
 
 
 if __name__ == '__main__':
